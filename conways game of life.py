@@ -7,8 +7,17 @@ import random
 
 N = 55
 data = np.ones((N, N)) * 1
-data.ravel()[np.random.choice(data.size, N, replace=False)] = np.nan # data.size = Number of elements in the array.
+data.ravel()[np.random.choice(data.size, 3000, replace=True)] = np.nan # data.size = Number of elements in the array.
 # random.choice() : Random sample from 1-D array
+# data.ravel() Return a contiguous flattened array.
+
+# liste icinde liste olduğundan [[],[],[]] --- bunları tek bir liste haline sokmak icin...
+# Original array : 
+#  [[ 0  1  2  3  4]
+#  [ 5  6  7  8  9]
+#  [10 11 12 13 14]]
+
+# ravel() :  [ 0  1  2 ..., 12 13 14]
 
 
 fig, ax = plt.subplots(1, 1, tight_layout=True)
@@ -43,6 +52,8 @@ def animate(x):
     data=data2
 
     ax.imshow(data2, interpolation='none', cmap=my_cmap, extent=[0, N, 0, N], zorder=0)
+    # imshow() allows you to render an image (either a 2D array which will be color-mapped(based on norm and cmap) 
+    # extent : (left, right, bottom, top) in data coordinates...
 
     return [data2]
 
